@@ -6,9 +6,15 @@ public class EnemyFollow2D : MonoBehaviour
 {
     public Transform player; // Reference to the player's transform
     public float speed = 2.0f; // Speed at which the enemy moves
+    public GameObject Enemy1;
+    public bool canSpawn = false;
 
-    void Update()
+    private void Start()
     {
+        StartCoroutine(Spawner());
+    }
+    void Update()
+    {    //Enemy följer efter spelaren
         if (player != null)
         {
             // Räkna ut "direction" från spelaren
