@@ -11,7 +11,7 @@ public class EnemyFollow2D : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Spawner());
+        
     }
     void Update()
     {    //Enemy följer efter spelaren
