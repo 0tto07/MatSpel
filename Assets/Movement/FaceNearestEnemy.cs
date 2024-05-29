@@ -3,16 +3,15 @@ using UnityEngine;
 public class FaceNearestEnemy : MonoBehaviour
 {
     public float pushForce = 10f; // Force to apply when pushing
-    private bool isPushing = false; // Flag to determine if push is active
 
     void Update()
     {
         FaceNearestEnemyInScene();
 
-        // Check for mouse button input to initiate push
+        // Check for mouse button input to push
         if (Input.GetMouseButtonDown(0))
         {
-            isPushing = true;
+            Push();
         }
     }
 
@@ -54,20 +53,26 @@ public class FaceNearestEnemy : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D collision)
+    void Push()
     {
-        if (isPushing)
-        {
-            Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                // Define the push direction based on the player's current rotation
-                Vector2 pushDirection = transform.up; // Assuming up is the forward direction
-                rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-            }
+        // Define the push direction based on the player's current rotation
+        Vector2 pushDirection = transform.up; // Assuming up is the forward direction
 
-            // Reset the pushing flag
-            isPushing = false;
+        // Perform a raycast to detect objects in the push direction
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, pushDirection, 1f);
+
+        foreach (var hit in hits)
+        {
+            // Ensure the object has a Rigidbody2D and is not the player itself
+            if (hit.collider != null && hit.collider.gameObject != gameObject)
+            {
+                Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    // Apply force to the object
+                    rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+                }
+            }
         }
     }
 
