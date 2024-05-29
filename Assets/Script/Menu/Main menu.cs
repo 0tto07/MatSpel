@@ -29,7 +29,7 @@ public class Mainmanu : MonoBehaviour
     }
     public void TutorialButton() 
     {
-        MainMenu.SetActive(true);
+        MainMenu.SetActive(false);
         tutorial.SetActive(true); 
     }
     public void MainMenuButton()
