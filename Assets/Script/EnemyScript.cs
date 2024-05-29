@@ -6,9 +6,16 @@ public class EnemyFollow2D : MonoBehaviour
 {
     public Transform player; // Reference to the player's transform
     public float speed = 2.0f; // Speed at which the enemy moves
+    public GameObject enemyPrefab;
+    public Transform spawnPoint;
+    private GameObject currentEnemy;
 
-    void Update()
+    private void Start()
     {
+
+    }
+    void Update()
+    {    //Enemy följer efter spelaren
         if (player != null)
         {
             // Räkna ut "direction" från spelaren
@@ -22,5 +29,7 @@ public class EnemyFollow2D : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
+        
     }
+   
 }
