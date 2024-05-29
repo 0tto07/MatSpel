@@ -3,19 +3,25 @@ using UnityEngine;
 public class FaceNearestEnemy : MonoBehaviour
 {
     public float pushForce = 10f; // Force to apply when pushing
+    public float minimumDistanceToEnemy = 1f; // Minimum distance to stop moving towards the enemy
+    public float speed = 2.0f; // Speed at which the player moves
+
+    private Transform nearestEnemy; // Reference to the nearest enemy
 
     void Update()
     {
-        FaceNearestEnemyInScene();
+        FindNearestEnemy();
 
         // Check for mouse button input to push
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && nearestEnemy != null && Vector2.Distance(transform.position, nearestEnemy.position) <= minimumDistanceToEnemy)
         {
             Push();
         }
+
+        FollowAndFaceNearestEnemy();
     }
 
-    void FaceNearestEnemyInScene()
+    void FindNearestEnemy()
     {
         // Find all enemies with the tag "Enemy"
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -23,11 +29,11 @@ public class FaceNearestEnemy : MonoBehaviour
         // If there are no enemies, return
         if (enemies.Length == 0)
         {
+            nearestEnemy = null;
             return;
         }
 
         // Find the nearest enemy
-        Transform nearestEnemy = null;
         float minDistance = Mathf.Infinity;
 
         foreach (var enemy in enemies)
@@ -39,17 +45,33 @@ public class FaceNearestEnemy : MonoBehaviour
                 nearestEnemy = enemy.transform;
             }
         }
+    }
 
-        // If a nearest enemy is found, rotate towards it
-        if (nearestEnemy != null)
+    void FollowAndFaceNearestEnemy()
+    {
+        if (nearestEnemy == null)
         {
-            Vector3 directionToEnemy = (nearestEnemy.position - transform.position).normalized;
-            float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            return;
+        }
 
-            // Debug logs
-            Debug.Log("Nearest Enemy: " + nearestEnemy.name);
-            Debug.Log("Angle: " + angle);
+        float distance = Vector2.Distance(transform.position, nearestEnemy.position);
+
+        // Only move towards the enemy if it is outside the minimum distance
+        if (distance > minimumDistanceToEnemy)
+        {
+            Vector2 direction = (nearestEnemy.position - transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, nearestEnemy.position, speed * Time.deltaTime);
+
+            // Rotate to face the enemy
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+        else
+        {
+            // Rotate to face the enemy even when within the minimum distance
+            Vector2 direction = (nearestEnemy.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 
@@ -58,20 +80,14 @@ public class FaceNearestEnemy : MonoBehaviour
         // Define the push direction based on the player's current rotation
         Vector2 pushDirection = transform.up; // Assuming up is the forward direction
 
-        // Perform a raycast to detect objects in the push direction
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, pushDirection, 1f);
-
-        foreach (var hit in hits)
+        // Apply force to the nearest enemy if within the minimum distance
+        if (nearestEnemy != null && Vector2.Distance(transform.position, nearestEnemy.position) <= minimumDistanceToEnemy)
         {
-            // Ensure the object has a Rigidbody2D and is not the player itself
-            if (hit.collider != null && hit.collider.gameObject != gameObject)
+            Rigidbody2D rb = nearestEnemy.GetComponent<Rigidbody2D>();
+            if (rb != null)
             {
-                Rigidbody2D rb = hit.collider.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                {
-                    // Apply force to the object
-                    rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-                }
+                // Apply force to the enemy
+                rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
             }
         }
     }
@@ -80,6 +96,10 @@ public class FaceNearestEnemy : MonoBehaviour
     {
         // Draw a line to visualize the push direction
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + transform.up);
+        Gizmos.DrawLine(transform.position, transform.position + transform.up * 1f);
+
+        // Draw a sphere to visualize the minimum distance to detect and interact with an enemy
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, minimumDistanceToEnemy);
     }
 }
