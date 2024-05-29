@@ -24,6 +24,8 @@ public class FatassData : ScriptableObject
 
     //Basic save stuff
     public string CurrentLevel;
+    public int SFXvolume;
+    public int Musicvolume;
 
     void Start()
     {
