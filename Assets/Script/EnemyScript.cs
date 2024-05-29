@@ -6,7 +6,6 @@ public class EnemyFollow2D : MonoBehaviour
 {
     public Transform player; // Reference to the player's transform
     public float speed = 2.0f; // Speed at which the enemy moves
-    public GameObject Enemy1;
     public GameObject enemyPrefab;
     public Transform spawnPoint;
     private GameObject currentEnemy;
