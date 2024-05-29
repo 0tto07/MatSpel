@@ -16,12 +16,14 @@ public class MarketScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //randomly generate a price between min price and max price
         price = Random.Range(minPrice, maxPrice);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //display the price
         text.text = price.ToString();
     }
 
@@ -29,9 +31,11 @@ public class MarketScript : MonoBehaviour
 
     public void ButtonPressed()
     {
+        //check if the player has enough money to purchase item
         if (data.money >= price)
         {
             data.money -= price;
+            //check what item is being purchased and what that item buffs/debuffs
             switch (whatItem)
             {
                 case 0:
@@ -60,6 +64,7 @@ public class MarketScript : MonoBehaviour
                     }
             }
         }
+        //if the player doesn't have enough money return
         else
         {
              return;

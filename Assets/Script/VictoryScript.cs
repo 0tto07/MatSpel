@@ -5,6 +5,7 @@ using UnityEngine;
 public class VictoryScript : MonoBehaviour
 {
     public FatassData data;
+    public int fameModifier;
     int minMoneyGain = 100;
     int maxMoneyGain = 500;
     public int moneyGain;
@@ -15,10 +16,11 @@ public class VictoryScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fameModifier = 1 + (data.followers / 1000);
         //Decide how much money is gotten upon win
-        moneyGain = Random.Range(minMoneyGain, maxMoneyGain) * data.fameModifier;
+        moneyGain = Random.Range(minMoneyGain, maxMoneyGain) * fameModifier;
         //Decide how many followers are obtained upon win
-        followerGain = Random.Range(minFollowerGain, maxFollowerGain) * data.fameModifier;
+        followerGain = Random.Range(minFollowerGain, maxFollowerGain) * fameModifier;
     }
 
     // Update is called once per frame
