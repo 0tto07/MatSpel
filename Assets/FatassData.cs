@@ -14,13 +14,13 @@ public class FatassData : ScriptableObject
     //increases money gain
     public int fameModifier;
     //how long you can go on an offensive without resting
-    public float energy = 1;
+    public float energy;
     //how quickly you can move
-    public float speed = 1;
+    public float speed;
     //decides your size and how difficult it is to be pushed
-    public float weight = 1;
+    public float weight;
     //how well and quickly you can push enemies
-    public float strength = 1;
+    public float strength;
 
     //Basic save stuff
     public string CurrentLevel;
@@ -29,7 +29,22 @@ public class FatassData : ScriptableObject
 
     void Start()
     {
-        
+        if (strength < 1)
+        {
+            strength = 1;
+        }
+        if (speed < 1)
+        {
+            speed = 1;
+        }
+        if (weight < 1)
+        {
+            weight = 1;
+        }
+        if (energy < 1)
+        {
+            energy = 1;
+        }
     }
 
     void Update()
