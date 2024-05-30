@@ -32,6 +32,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Arena"))
+        {
+            Debug.Log("Player dies");
+
+            Destroy(gameObject);
+
+            
+
+
+        }
+    }
+
     void FixedUpdate()
     {
         // Applying movement to the player
