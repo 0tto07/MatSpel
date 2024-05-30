@@ -61,6 +61,16 @@ public class EnemyFollow2D : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Arena"))
+        {
+            Debug.Log("Enemy dies");
+
+            Destroy(gameObject);
+        }
+    }
+
     void Push()
     {
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();

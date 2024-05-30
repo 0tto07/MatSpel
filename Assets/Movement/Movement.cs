@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.CompareTag("Arena"))
         {
-            Debug.Log("Player dies");
+            Debug.Log("Enemy dies");
 
             Destroy(gameObject);
         }

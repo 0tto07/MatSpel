@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a8a139c42ceaa3146b2e5563841a0934, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cd25b9467a5d7440aaea007864f408e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.27, y: 3.27}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -127,9 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd500ddde2c4b745920bc7e9053c8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5621345778461502445, guid: 4aeba4f0fcd0f0e4d9426de2c4a2965d, type: 3}
   speed: 1
-  enemyPrefab: {fileID: 4447308039748716932}
-  spawnPoint: {fileID: 0}
+  pushForce: 1.5
+  pushDuration: 0.5
+  pushCooldown: 3
 --- !u!60 &3510651138834797791
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -167,7 +169,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.27, y: 3.27}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3.27, y: 3.27}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -256,7 +258,7 @@ PolygonCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.27, y: 3.27}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3.27, y: 3.27}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
