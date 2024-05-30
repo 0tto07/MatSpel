@@ -20,7 +20,7 @@ public class StatApplier : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        strengthMod = data.strength / 100;
+        strengthMod = data.strength / 10;
         weightMod = data.weight/100;
         energyMod = data.energy/100;
         speedMod = data.speed/100;
