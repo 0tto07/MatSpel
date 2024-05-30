@@ -15,7 +15,7 @@ public class FaceNearestEnemy : MonoBehaviour
     void Update()
     {
         FindNearestEnemy();
-        pushForce = pushForce + statApplier.strengthMod;
+        pushForce = 2f + statApplier.strengthMod;
 
         // Check for mouse button input to push
         if (Input.GetMouseButtonDown(0) && canPush)
