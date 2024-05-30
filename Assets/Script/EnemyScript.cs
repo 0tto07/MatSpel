@@ -10,6 +10,7 @@ public class EnemyFollow2D : MonoBehaviour
     public float speed = 2.0f; // Speed at which the enemy moves
     public GameObject enemyPrefab;
     public Transform spawnPoint;
+    public float time = 10f;
 
     private void Start()
     {
