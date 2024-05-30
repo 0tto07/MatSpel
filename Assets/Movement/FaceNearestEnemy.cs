@@ -3,8 +3,7 @@ using System.Collections;
 
 public class FaceNearestEnemy : MonoBehaviour
 {
-    //public FatassData data;
-    //public StatApplier statApplier;
+    public StatApplier statApplier;
     public float pushForce = 2f; // Force to apply when pushing
     private Transform nearestEnemy; // Reference to the nearest enemy
     private bool isPushing = false; // Flag to indicate if pushing is active
@@ -15,7 +14,7 @@ public class FaceNearestEnemy : MonoBehaviour
     void Update()
     {
         FindNearestEnemy();
-        //pushForce = 2f + statApplier.strengthMod;
+        pushForce = 2f + statApplier.strengthMod;
 
         // Check for mouse button input to push
         if (Input.GetMouseButtonDown(0) && canPush)
