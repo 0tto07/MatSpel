@@ -14,7 +14,7 @@ public class EnemyFollow2D : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerMovement>().transform;
+        player = FindObjectOfType<Movement>().transform;
     }
 
     void Update()
@@ -50,34 +50,41 @@ public class EnemyFollow2D : MonoBehaviour
                     pushTimer = 0f; // Reset timer for next push
                 }
             }
+        }
+    }
 
-            // Check if the enemy can push
-            if (canPush && !isPushing && Vector2.Distance(transform.position, player.position) < 2.0f) // assuming a push range of 2 units
-            {
-                Push();
-            }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject == player.gameObject && canPush && !isPushing)
+        {
+            Push();
         }
     }
 
     void Push()
     {
-        if (player != null)
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        Movement playerMovement = player.GetComponent<Movement>();
+        if (rb != null && playerMovement != null)
         {
-            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                // Calculate push direction (away from the enemy)
-                Vector2 pushDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
-                rb.velocity = Vector2.zero; // Reset the player's velocity
-                rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-                isPushing = true;
-                canPush = false; // Disable further pushes until cooldown is over
-                Debug.Log("Pushed player with force: " + pushDirection * pushForce);
-            }
-            else
-            {
-                Debug.LogWarning("Player does not have a Rigidbody2D component.");
-            }
+            Vector2 pushDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
+            rb.velocity = Vector2.zero; // Reset the player's velocity
+            rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+            playerMovement.StartPushImpact(pushDuration);
+
+            Debug.Log("Pushed player with force: " + pushDirection * pushForce);
+            isPushing = true;
+            canPush = false; // Disable further pushes until cooldown is over
+            Invoke("ResetPush", pushCooldown);
         }
+        else
+        {
+            Debug.LogWarning("Player does not have required components.");
+        }
+    }
+
+    void ResetPush()
+    {
+        canPush = true;
     }
 }

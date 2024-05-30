@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     public StatApplier statApplier;
     public float moveSpeed;
@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
+    private bool isBeingPushed = false;
 
     void Start()
     {
@@ -18,18 +19,40 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.drag = 0.05f + statApplier.weightMod;
-        // Input handling for movement
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
 
-        // Normalizing the vector to maintain consistent speed
-        if (movement.magnitude > 1)
+        // Input handling for movement only if not being pushed
+        if (!isBeingPushed)
         {
-            movement.Normalize();
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            // Normalizing the vector to maintain consistent speed
+            if (movement.magnitude > 1)
+            {
+                movement.Normalize();
+            }
         }
+    }
 
-        
+    void FixedUpdate()
+    {
+        // Applying movement to the player only if not being pushed
+        if (!isBeingPushed)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
 
+    public void StartPushImpact(float duration)
+    {
+        isBeingPushed = true;
+        Invoke("EndPushImpact", duration); // Automatically end the impact after a duration
+    }
+
+    private void EndPushImpact()
+    {
+        isBeingPushed = false;
+        rb.velocity = Vector2.zero; // Reset the velocity after the push effect ends
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -39,16 +62,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Player dies");
 
             Destroy(gameObject);
-
-            
-
-
         }
     }
-
-    void FixedUpdate()
-    {
-        // Applying movement to the player
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-    }  
 }
