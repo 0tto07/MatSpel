@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c621c1b07690d4884c046b3990b63b, type: 3}
   m_Name: SavedData
   m_EditorClassIdentifier: 
-  money: 0
+  money: 3425
   followers: 0
   energy: 0
   speed: 0

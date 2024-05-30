@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 1188131369}
   - component: {fileID: 1188131368}
   - component: {fileID: 1188131371}
+  - component: {fileID: 1188131372}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -321,6 +322,21 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1188131372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188131367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6055c6f301b03ac4dadcd8d7e8e2e8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToFollow: {fileID: 2061171584}
+  smoothing: 0.1
+  yOffset: 0
 --- !u!1 &1551498633
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +428,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 87365678a0c1a264dafec4e7eea47f77, type: 3}
   m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -433,7 +449,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -483,9 +499,14 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.024269104, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 10.085876
+--- !u!4 &2061171584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5621345778461502445, guid: 4aeba4f0fcd0f0e4d9426de2c4a2965d, type: 3}
+  m_PrefabInstance: {fileID: 467756648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8662009169965551593
 PrefabInstance:
   m_ObjectHideFlags: 0
