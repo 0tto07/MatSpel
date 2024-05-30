@@ -10,6 +10,7 @@ public class StatApplier : MonoBehaviour
     public float weightMod;
     public float energyMod;
     public float speedMod;
+    public float scaleMod;
 
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,6 @@ public class StatApplier : MonoBehaviour
         weightMod = data.weight/100;
         energyMod = data.energy/100;
         speedMod = data.speed/100;
+        scaleMod = data.weight / 500;
     }
 }
