@@ -127,6 +127,10 @@ public class MarketScript : MonoBehaviour
                         break;
                     }
             }
+            if (data.speed > 200)
+            {
+                data.speed = 200;
+            }
         }
         //if the player doesn't have enough money return
         else
