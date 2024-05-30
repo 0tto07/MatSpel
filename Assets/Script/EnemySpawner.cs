@@ -9,12 +9,13 @@ public class EnemySpawner : MonoBehaviour
     public Transform spawnPoint; // The specific position where the enemy will be spawned
     private GameObject currentEnemy; // Reference to the currently spawned enemy
     WaitForSeconds wait;
-    bool spawned;
+    bool spawned = true;
 
     void Start()
     {
         StartCoroutine(Spawner());
         SpawnEnemy();
+
     }
 
     private IEnumerator Spawner()
@@ -30,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        
         if ( currentEnemy == null)
         {
             spawned = false;

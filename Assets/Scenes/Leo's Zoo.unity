@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1447125886562463585, guid: 4aeba4f0fcd0f0e4d9426de2c4a2965d, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1188131369}
     - target: {fileID: 5472406234633490665, guid: 4aeba4f0fcd0f0e4d9426de2c4a2965d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -378,7 +382,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1660276383}
   - component: {fileID: 1660276382}
-  - component: {fileID: 1660276384}
   - component: {fileID: 1660276385}
   m_Layer: 0
   m_Name: Circle
@@ -454,19 +457,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1660276384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660276380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3a94ea4b237b24e8e8563b2d599d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInsideCircle: 1
 --- !u!58 &1660276385
 CircleCollider2D:
   m_ObjectHideFlags: 0
