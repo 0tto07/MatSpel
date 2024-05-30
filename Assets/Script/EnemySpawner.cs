@@ -19,9 +19,12 @@ public class EnemySpawner : MonoBehaviour
         // Check if the current enemy is null (i.e., has been destroyed)
         if (currentEnemy == null)
         {
+            
+
             SpawnEnemy();
         }
     }
+    
 
     void SpawnEnemy()
     {

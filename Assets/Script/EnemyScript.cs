@@ -10,8 +10,6 @@ public class EnemyFollow2D : MonoBehaviour
     public float speed = 2.0f; // Speed at which the enemy moves
     public GameObject enemyPrefab;
     public Transform spawnPoint;
-    private GameObject currentEnemy;
-    public bool OnPlatform;
 
     private void Start()
     {
@@ -35,6 +33,20 @@ public class EnemyFollow2D : MonoBehaviour
             // Fiende kolla på spelare
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Arena"))
+        {
+            Debug.Log("Enemie dies");
+
+            Destroy(gameObject);
+
+            //CODE WHEN ENEMY DIES HERE
+
+
         }
     }
 }
