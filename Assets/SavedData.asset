@@ -18,6 +18,11 @@ MonoBehaviour:
   speed: 0
   weight: 0
   strength: 0
-  CurrentLevel: 
+  CurrentLevel: 0
   SFXvolume: 0
   Musicvolume: 0
+  soda: 0
+  proteinshake: 0
+  energydrink: 0
+  sake: 0
+  disel: 0

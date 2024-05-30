@@ -25,6 +25,13 @@ public class FatassData : ScriptableObject
     public int SFXvolume;
     public int Musicvolume;
 
+    //Drink buffs
+    public bool soda;
+    public bool proteinshake;
+    public bool energydrink;
+    public bool sake;
+    public bool disel;
+
     void Start()
     {
         if (strength < 1)

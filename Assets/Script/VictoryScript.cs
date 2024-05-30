@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VictoryScript : MonoBehaviour
 {
+    public Sceneloader Sceneloader;
     public FatassData data;
     public int fameModifier;
     int minMoneyGain = 100;
@@ -35,5 +36,11 @@ public class VictoryScript : MonoBehaviour
         data.money += moneyGain;
         data.followers += followerGain;
         data.CurrentLevel += 1;
+        data.soda = false;
+        data.energydrink = false;
+        data.proteinshake = false;
+        data.sake = false;
+        data.disel = false;
+        Sceneloader.LoadScene("Market");
     }
 }
