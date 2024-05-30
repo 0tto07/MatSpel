@@ -34,5 +34,6 @@ public class VictoryScript : MonoBehaviour
     {
         data.money += moneyGain;
         data.followers += followerGain;
+        data.CurrentLevel += 1;
     }
 }
