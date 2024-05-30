@@ -11,6 +11,7 @@ public class EnemyFollow2D : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform spawnPoint;
     private GameObject currentEnemy;
+    public bool OnPlatform;
 
     private void Start()
     {

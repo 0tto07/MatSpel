@@ -104,20 +104,11 @@ public class FaceNearestEnemy : MonoBehaviour
 
     private IEnumerator StopEnemyMovement(Rigidbody2D enemyRb, float duration)
     {
-        
-
-        yield return new WaitForSeconds(1);
-        /*float elapsedTime = 0f;
-        while (elapsedTime < duration)
-        {
-            enemyRb.velocity = Vector2.zero;
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        */
-        Debug.Log("Hej ehheh");
+        // Freeze enemy movement for the specified duration
         Vector2 originalVelocity = enemyRb.velocity;
         enemyRb.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(duration);
 
         enemyRb.velocity = originalVelocity;
     }

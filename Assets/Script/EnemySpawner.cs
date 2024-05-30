@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    
     public GameObject enemyPrefab; // The enemy prefab to spawn
     public Transform spawnPoint; // The specific position where the enemy will be spawned
     private GameObject currentEnemy; // Reference to the currently spawned enemy
