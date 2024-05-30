@@ -11,8 +11,6 @@ public class FatassData : ScriptableObject
     //used to decide fameModifier
     public int followers = 0;
     //STATS
-    //increases money gain
-    public int fameModifier;
     //how long you can go on an offensive without resting
     public float energy;
     //how quickly you can move
@@ -49,6 +47,6 @@ public class FatassData : ScriptableObject
 
     void Update()
     {
-        fameModifier = (1 + (followers / 1000));
+
     }
 }

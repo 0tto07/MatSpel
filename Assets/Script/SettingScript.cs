@@ -15,6 +15,7 @@ public class SettingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //decide whether the slider is for SFX or music.
         if (whatSetting == false)
         {
             currentValue = data.SFXvolume;
@@ -28,6 +29,7 @@ public class SettingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //display current volume
         currentValue = Slider.value;
         text.text = currentValue.ToString();
     }
