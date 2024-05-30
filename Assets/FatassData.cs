@@ -21,7 +21,7 @@ public class FatassData : ScriptableObject
     public float strength;
 
     //Basic save stuff
-    public string CurrentLevel;
+    public float CurrentLevel;
     public int SFXvolume;
     public int Musicvolume;
 
