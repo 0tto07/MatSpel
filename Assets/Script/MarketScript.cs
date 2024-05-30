@@ -11,8 +11,7 @@ public class MarketScript : MonoBehaviour
     int minPrice;
     int maxPrice;
     public int price;
-    float inStat;
-    float deStat;
+
     // Start is called before the first frame update
     void Start()
     {
