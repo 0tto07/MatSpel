@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFollow2D : MonoBehaviour
 {
-    [SerializeField] float minimumDistanceToPlayer = 0.1f;
+   
 
     Transform player; // Reference to the player's transform
     public float speed = 2.0f; // Speed at which the enemy moves
@@ -19,10 +19,7 @@ public class EnemyFollow2D : MonoBehaviour
 
     void Update()
     {
-        if (minimumDistanceToPlayer > Vector2.Distance(transform.position, player.position))
-        {
-            return;
-        }
+        
 
         //Enemy följer efter spelaren
         if (player != null)
