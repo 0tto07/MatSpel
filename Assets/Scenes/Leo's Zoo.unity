@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5621345778461502445, guid: 4aeba4f0fcd0f0e4d9426de2c4a2965d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.17
+      value: -1.77
       objectReference: {fileID: 0}
     - target: {fileID: 5621345778461502445, guid: 4aeba4f0fcd0f0e4d9426de2c4a2965d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -346,7 +346,7 @@ Transform:
   m_GameObject: {fileID: 1551498633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.78, y: -1.48, z: -0.019240376}
+  m_LocalPosition: {x: 0, y: 0, z: -0.019240376}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -362,9 +362,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1660276383}
   - component: {fileID: 1660276382}
+  - component: {fileID: 1660276384}
+  - component: {fileID: 1660276385}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -430,12 +432,60 @@ Transform:
   m_GameObject: {fileID: 1660276380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.03, y: -0.7, z: 0}
-  m_LocalScale: {x: 8.8774, y: 5.608017, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1660276384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660276380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3a94ea4b237b24e8e8563b2d599d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInsideCircle: 1
+--- !u!58 &1660276385
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660276380}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1001 &8662009169965551593
 PrefabInstance:
   m_ObjectHideFlags: 0
