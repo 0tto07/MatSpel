@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public FatassData data;
     public float moveSpeed = 5f;
     public Camera mainCamera; // Reference to the main camera
 
