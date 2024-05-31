@@ -12,13 +12,14 @@ public class Mainmanu : MonoBehaviour
 
     [SerializeField] private TMP_Text volumeTextValue = null;
     // Called when we click the "Play" button.
-    public void PlayNow(string gameLevel)
+    void Start()
     {
-        SceneManager.LoadScene(gameLevel);
+        MainMenuButton();
     }
-    public void Setting(string Setting)
+
+    public void PlayNowButton()
     {
-        SceneManager.LoadScene(Setting);
+        SceneManager.LoadScene(1);
     }
     public void CreditsButton()
     {
@@ -26,12 +27,17 @@ public class Mainmanu : MonoBehaviour
         MainMenu.SetActive(false);
         CreditsMenu.SetActive(true);
     }
-    public void TutorialButton()
+    public void TutorialButton() 
     {
         MainMenu.SetActive(false);
-        tutorial.SetActive(true);
+        tutorial.SetActive(true); 
     }
-
+    public void MainMenuButton()
+    {
+        // Show Main Menu
+        MainMenu.SetActive(true);
+        CreditsMenu.SetActive(false);
+    }
 
     // Called when we click the "Quit" button.
     public void OnQuitButton()
@@ -45,5 +51,5 @@ public class Mainmanu : MonoBehaviour
         volumeTextValue.text = volume.ToString("0.0");
     }
 
-
+    
 }

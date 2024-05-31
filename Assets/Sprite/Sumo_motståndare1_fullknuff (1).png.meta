@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 61874c4a10eabd345a5b3f4d58d9eb90
+<<<<<<<< HEAD:Assets/Sprite/Sumo_motståndare1_fullknuff (1).png.meta
+guid: d072d0705fc48d34a9c93d1f91f2a353
+========
+guid: 1f7485253d61b3a4899b908d0eeb4d18
+>>>>>>>> f3db619a40927db420b86203ca51ca079211b24f:Assets/Sprite/Settings_menu_knob 1.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

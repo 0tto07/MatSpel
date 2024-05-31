@@ -21,9 +21,8 @@ MonoBehaviour:
   CurrentLevel: 1
   SFXvolume: 0
   Musicvolume: 0
-  health: 0
+  soda: 0
   proteinshake: 0
   energydrink: 0
   sake: 0
   disel: 0
-  milk: 0
