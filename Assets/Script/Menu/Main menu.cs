@@ -12,13 +12,13 @@ public class Mainmanu : MonoBehaviour
 
     [SerializeField] private TMP_Text volumeTextValue = null;
     // Called when we click the "Play" button.
-    public void PlayNow()
+    public void PlayNow(string gameLevel)
     {
-        SceneManager.LoadScene("Gamelevel");
+        SceneManager.LoadScene(gameLevel);
     }
-    public void Setting()
+    public void Setting(string Setting)
     {
-        SceneManager.LoadScene("Setting");
+        SceneManager.LoadScene(Setting);
     }
     public void CreditsButton()
     {
