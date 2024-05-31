@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c621c1b07690d4884c046b3990b63b, type: 3}
   m_Name: SavedData
   m_EditorClassIdentifier: 
-  money: 3425
-  followers: 0
-  energy: 0
-  speed: 0
-  weight: 0
-  strength: 0
-  CurrentLevel: 0
+  money: 35186767
+  followers: 69
+  energy: -16
+  speed: 64
+  weight: 100
+  strength: 750
+  CurrentLevel: 1
   SFXvolume: 0
   Musicvolume: 0
   soda: 0
