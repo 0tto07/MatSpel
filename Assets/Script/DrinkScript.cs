@@ -104,6 +104,12 @@ public class DrinkScript : MonoBehaviour
                         data.weight *= 1.25f;
                         data.energy *= 1.4f;
                         data.sake = true;
+                        if (data.milk == false)
+                        {
+                            data.weight /= 1.3f;
+                            data.strength /= 1.25f;
+                            data.speed /= 1.15f;
+                        }
                         break;
                     }
                 //disel
@@ -111,6 +117,10 @@ public class DrinkScript : MonoBehaviour
                     {
                         data.weight *= 1.7f;
                         data.disel = true;
+                        if (data.milk == false)
+                        {
+                            data.weight /= 1.7f;
+                        }
                         break;
                     }
                 //milk
@@ -119,6 +129,11 @@ public class DrinkScript : MonoBehaviour
                         data.weight *= 1.3f;
                         data.strength *= 1.25f;
                         data.milk = true;
+                        if (data.milk == false)
+                        {
+                            data.weight /= 1.3f;
+                            data.strength /= 1.25f;
+                        }
                         break;
                     }
             }
