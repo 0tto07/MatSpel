@@ -24,7 +24,7 @@ public class DrinkScript : MonoBehaviour
                     maxPrice = 1000;
                     break;
                 }
-            //soda
+            //health
             case 1:
                 {
                     minPrice = 300;
@@ -41,8 +41,8 @@ public class DrinkScript : MonoBehaviour
             //sake
             case 3:
                 {
-                    minPrice = 300;
-                    maxPrice = 1000;
+                    minPrice = 2000;
+                    maxPrice = 10000;
                     break;
                 }
             //disel
@@ -78,36 +78,77 @@ public class DrinkScript : MonoBehaviour
                 //energy drink
                 case 0:
                     {
-                        data.speed *= 8;
+                        data.energy *= 1.5f;
                         data.energydrink = true;
+                        if (data.energydrink == false)
+                        {
+                            data.energy /= 1.5f;
+                        }
                         break;
                     }
-                //soda
+                //health
                 case 1:
                     {
-                        data.energy *= 13;
-                        data.soda = true;
+                        data.speed *= 1.5f;
+                        data.health = true;
+                        if (data.health == false)
+                        {
+                            data.speed /= 1.5f;
+                        }
                         break;
                     }
                 //protein drink
                 case 2:
                     {
-                        data.weight *= 50;
+                        data.strength *= 1.3f;
+                        data.weight *= 1.3f;
                         data.proteinshake = true;
+                        if (data.proteinshake == false)
+                        {
+                            data.strength /= 1.3f;
+                            data.weight /= 1.3f;
+                        }
                         break;
                     }
                 //sake
                 case 3:
                     {
-                        data.strength *= 11;
+                        data.strength *= 1.75f;
+                        data.speed *= 1.15f;
+                        data.weight *= 1.25f;
+                        data.energy *= 1.4f;
                         data.sake = true;
+                        if (data.sake == false)
+                        {
+                            data.weight /= 1.3f;
+                            data.strength /= 1.25f;
+                            data.speed /= 1.15f;
+                            data.energy /= 1.4f;
+                        }
                         break;
                     }
                 //disel
                 case 4:
                     {
-                        data.weight *= 50;
+                        data.weight *= 1.7f;
+                        data.speed /= 1.2f;
                         data.disel = true;
+                        if (data.disel == false)
+                        {
+                            data.weight /= 1.7f;
+                            data.speed *= 1.2f;
+                        }
+                        break;
+                    }
+                //milk
+                case 5:
+                    {
+                        data.strength *= 1.5f;
+                        data.milk = true;
+                        if (data.milk == false)
+                        {
+                            data.strength /= 1.5f;
+                        }
                         break;
                     }
             }

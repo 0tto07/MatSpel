@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    
+    public VictoryScript win;
     public GameObject enemyPrefab; // The enemy prefab to spawn
     public Transform spawnPoint; // The specific position where the enemy will be spawned
     private GameObject currentEnemy; // Reference to the currently spawned enemy
@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
         
         if ( currentEnemy == null)
         {
-            spawned = false;
+            win.OnWin();
         }
         // Check if the current enemy is null (i.e., has been destroyed)
         if (currentEnemy == null)

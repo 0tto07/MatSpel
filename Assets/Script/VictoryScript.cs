@@ -36,11 +36,12 @@ public class VictoryScript : MonoBehaviour
         data.money += moneyGain;
         data.followers += followerGain;
         data.CurrentLevel += 1;
-        data.soda = false;
+        data.health = false;
         data.energydrink = false;
         data.proteinshake = false;
         data.sake = false;
         data.disel = false;
+        data.milk = false;
         Sceneloader.LoadScene("Market");
     }
 }
