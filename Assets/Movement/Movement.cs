@@ -41,25 +41,30 @@ public class Movement : MonoBehaviour
         {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
+        // If being pushed, let the physics engine handle the movement based on forces applied
     }
 
-    public void StartPushImpact(float duration)
+    public void StartPushImpact(float duration, Vector2 pushForce)
     {
-        isBeingPushed = true;
-        Invoke("EndPushImpact", duration); // Automatically end the impact after a duration
+        if (!isBeingPushed) // Check to prevent re-setting the force if already being pushed
+        {
+            isBeingPushed = true;
+            rb.AddForce(pushForce, ForceMode2D.Impulse); // Apply the external push force
+            Invoke("EndPushImpact", duration); // Automatically end the impact after a duration
+        }
     }
 
     private void EndPushImpact()
     {
         isBeingPushed = false;
-        rb.velocity = Vector2.zero; // Reset the velocity after the push effect ends
+        rb.velocity = Vector2.zero; // Optionally reset the velocity after the push effect ends
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Arena"))
         {
-            Debug.Log("Enemy dies");
+            Debug.Log("Player exits arena, dies.");
 
             Destroy(gameObject);
         }

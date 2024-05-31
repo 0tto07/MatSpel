@@ -4,94 +4,121 @@ using System.Collections;
 public class BossBodySlam : MonoBehaviour
 {
     public Transform player; // Reference to the player's transform
-    public SpriteRenderer spriteRenderer; // Boss's sprite renderer
-    public Sprite normalSprite; // Normal sprite when boss is on the ground
-    public Sprite jumpingSprite; // Sprite when boss is 'jumping' or in the air
-    public float moveSpeed = 2.0f; // Speed at which the boss moves towards the player
-    public float slamForce = 100f; // Force applied when slamming
-    public float slamRadius = 3.0f; // Radius of effect for the slam
-    public float slamCooldown = 10f; // Cooldown duration for slam
+    public SpriteRenderer spriteRenderer; // Sprite Renderer to change sprites when jumping
+    public Sprite normalSprite; // Normal sprite
+    public Sprite jumpingSprite; // Sprite for when jumping
+    public float speed = 2.0f; // Speed at which the boss moves
+    public float normalPushForce = 1.5f; // Base force to apply when pushing normally
+    public float enhancedPushForce = 22.5f; // Base force multiplied by 15 for enhanced push
+    public float jumpDuration = 3f; // Time boss stays "in the air"
+    public float pushDuration = 0.5f; // Duration for which the push force is applied
+    public float normalPushCooldown = 3f; // Cooldown duration for normal pushes
+    public float enhancedPushCooldown = 10f; // Cooldown duration for enhanced pushes
 
-    private Rigidbody2D rb; // Rigidbody component
-    private bool isSlamming = false; // Is currently performing a slam
-    private float slamTimer = 0f; // Timer to track cooldown
+    private float normalPushTimer = 0f; // Timer to track normal push duration and cooldown
+    private float enhancedPushTimer = 0f; // Timer to track enhanced push duration and cooldown
+    private bool isPushing = false; // Flag to indicate if pushing is active
+    private bool canPush = true; // Flag to indicate if the boss can push
+    private Rigidbody2D rb; // Rigidbody component of the player for force application
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = player.GetComponent<Rigidbody2D>();
         if (player == null)
         {
-            player = FindObjectOfType<Movement>().transform;
+            player = FindObjectOfType<Movement>().transform; // Ensure this fetches the correct player movement script component
         }
     }
 
     void Update()
     {
-        // Cooldown timer
-        if (slamTimer > 0)
-        {
-            slamTimer -= Time.deltaTime;
-        }
-
-        // Movement towards the player
-        if (!isSlamming && player != null)
+        if (player != null)
         {
             Vector2 direction = (Vector2)player.position - (Vector2)transform.position;
             direction.Normalize(); // Normalize the direction vector
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-        }
 
-        // Check if it's time to start a slam
-        if (!isSlamming && slamTimer <= 0 && Vector2.Distance(transform.position, player.position) < 5.0f)
-        {
-            StartCoroutine(PerformSlam());
-            slamTimer = slamCooldown; // Reset cooldown timer
-        }
-    }
-
-    IEnumerator PerformSlam()
-    {
-        isSlamming = true;
-
-        // Change sprite to indicate jumping
-        spriteRenderer.sprite = jumpingSprite;
-
-        // Wait while "up in the air"
-        yield return new WaitForSeconds(3);
-
-        // Change sprite back to normal
-        spriteRenderer.sprite = normalSprite;
-
-        // Execute the slam impact
-        ExecuteSlamImpact();
-
-        // End of slam action
-        isSlamming = false;
-    }
-
-    void ExecuteSlamImpact()
-    {
-        // Check for impact
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, slamRadius);
-        foreach (var hit in hitColliders)
-        {
-            if (hit.transform == player)
+            if (!isPushing)
             {
-                // Apply force if it's the player
-                Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    Vector2 direction = (player.position - transform.position).normalized;
-                    playerRb.AddForce(direction * slamForce, ForceMode2D.Impulse);
-                }
+                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            }
+
+            UpdatePushTimers();
+        }
+    }
+
+    private void UpdatePushTimers()
+    {
+        if (normalPushTimer > 0)
+        {
+            normalPushTimer -= Time.deltaTime;
+        }
+        if (enhancedPushTimer > 0)
+        {
+            enhancedPushTimer -= Time.deltaTime;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject == player.gameObject)
+        {
+            if (enhancedPushTimer <= 0 && canPush)
+            {
+                StartCoroutine(JumpAndPush());
+                enhancedPushTimer = enhancedPushCooldown;
+                canPush = false;
+            }
+            else if (normalPushTimer <= 0 && canPush)
+            {
+                NormalPush();
+                normalPushTimer = normalPushCooldown;
+                canPush = false;
             }
         }
     }
 
-    private void OnDrawGizmos()
+    IEnumerator JumpAndPush()
     {
-        // To visualize the slam effect radius
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, slamRadius);
+        isPushing = true;
+        spriteRenderer.sprite = jumpingSprite;
+        yield return new WaitForSeconds(jumpDuration);
+        spriteRenderer.sprite = normalSprite;
+        EnhancedPush();
+        isPushing = false;
+    }
+
+    void NormalPush()
+    {
+        ApplyPush(normalPushForce);
+        Invoke("ResetPush", normalPushCooldown);
+    }
+
+    void EnhancedPush()
+    {
+        ApplyPush(enhancedPushForce);
+        Invoke("ResetPush", enhancedPushCooldown);
+    }
+
+    void ApplyPush(float force)
+    {
+        if (rb != null)
+        {
+            Vector2 pushDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
+            rb.velocity = Vector2.zero; // Reset the player's velocity
+            rb.AddForce(pushDirection * force, ForceMode2D.Impulse);
+
+            Debug.Log("Pushed player with force: " + force);
+        }
+        else
+        {
+            Debug.LogWarning("Player does not have a Rigidbody2D component.");
+        }
+    }
+
+    void ResetPush()
+    {
+        canPush = true;
     }
 }

@@ -41,8 +41,8 @@ public class DrinkScript : MonoBehaviour
             //sake
             case 3:
                 {
-                    minPrice = 300;
-                    maxPrice = 1000;
+                    minPrice = 2000;
+                    maxPrice = 10000;
                     break;
                 }
             //disel
@@ -78,36 +78,47 @@ public class DrinkScript : MonoBehaviour
                 //energy drink
                 case 0:
                     {
-                        data.speed *= 8;
+                        data.energy *= 1.5f;
                         data.energydrink = true;
                         break;
                     }
-                //soda
+                //health
                 case 1:
                     {
-                        data.energy *= 13;
-                        data.soda = true;
+                        data.weight *= 1.5f;
+                        data.health = true;
                         break;
                     }
                 //protein drink
                 case 2:
                     {
-                        data.weight *= 50;
+                        data.strength *= 1.5f;
                         data.proteinshake = true;
                         break;
                     }
                 //sake
                 case 3:
                     {
-                        data.strength *= 11;
+                        data.strength *= 1.75f;
+                        data.speed *= 1.15f;
+                        data.weight *= 1.25f;
+                        data.energy *= 1.4f;
                         data.sake = true;
                         break;
                     }
                 //disel
                 case 4:
                     {
-                        data.weight *= 50;
+                        data.weight *= 1.7f;
                         data.disel = true;
+                        break;
+                    }
+                //milk
+                case 5:
+                    {
+                        data.weight *= 1.3f;
+                        data.strength *= 1.25f;
+                        data.milk = true;
                         break;
                     }
             }
