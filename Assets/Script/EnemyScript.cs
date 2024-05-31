@@ -80,7 +80,7 @@ public class EnemyFollow2D : MonoBehaviour
             Vector2 pushDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
             rb.velocity = Vector2.zero; // Reset the player's velocity
             rb.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-            playerMovement.StartPushImpact(pushDuration);
+            
 
             Debug.Log("Pushed player with force: " + pushDirection * pushForce);
             isPushing = true;
