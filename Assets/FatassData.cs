@@ -22,16 +22,15 @@ public class FatassData : ScriptableObject
 
     //Basic save stuff
     public float CurrentLevel;
-    public float SFXvolume;
-    public float Musicvolume;
+    public int SFXvolume;
+    public int Musicvolume;
 
     //Drink buffs
-    public bool health;
+    public bool soda;
     public bool proteinshake;
     public bool energydrink;
     public bool sake;
     public bool disel;
-    public bool milk;
 
     void Start()
     {
