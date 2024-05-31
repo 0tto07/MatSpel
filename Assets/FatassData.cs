@@ -26,11 +26,12 @@ public class FatassData : ScriptableObject
     public int Musicvolume;
 
     //Drink buffs
-    public bool soda;
+    public bool health;
     public bool proteinshake;
     public bool energydrink;
     public bool sake;
     public bool disel;
+    public bool milk;
 
     void Start()
     {
