@@ -12,12 +12,9 @@ public class Mainmanu : MonoBehaviour
 
     [SerializeField] private TMP_Text volumeTextValue = null;
     // Called when we click the "Play" button.
-    void Start()
-    {
-        MainMenuButton();
-    }
+    
 
-    public void PlayNowButton()
+    public void PlayNow()
     {
         SceneManager.LoadScene(1);
     }
@@ -32,12 +29,7 @@ public class Mainmanu : MonoBehaviour
         MainMenu.SetActive(false);
         tutorial.SetActive(true); 
     }
-    public void MainMenuButton()
-    {
-        // Show Main Menu
-        MainMenu.SetActive(true);
-        CreditsMenu.SetActive(false);
-    }
+
 
     // Called when we click the "Quit" button.
     public void OnQuitButton()
