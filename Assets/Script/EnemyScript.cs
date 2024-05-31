@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyFollow2D : MonoBehaviour
 {
+    public VictoryScript win;
     public Transform player; // Reference to the player's transform
     public float speed = 2.0f; // Speed at which the enemy moves
     public float pushForce = 1.5f; // Force to apply when pushing
@@ -68,6 +69,7 @@ public class EnemyFollow2D : MonoBehaviour
             Debug.Log("Enemy dies");
 
             Destroy(gameObject);
+            win.OnWin();
         }
     }
 
