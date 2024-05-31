@@ -16,14 +16,13 @@ MonoBehaviour:
   followers: 69
   energy: -16
   speed: 64
-  weight: 100
+  weight: 210
   strength: 750
   CurrentLevel: 1
   SFXvolume: 0
   Musicvolume: 0
-  health: 0
+  soda: 0
   proteinshake: 0
   energydrink: 0
   sake: 0
   disel: 0
-  milk: 0

@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class EnemyFollow2D : MonoBehaviour
 {
-    public FatassData data;
     public Transform player; // Reference to the player's transform
     public float speed = 2.0f; // Speed at which the enemy moves
     public float pushForce = 1.5f; // Force to apply when pushing
     public float pushDuration = 0.5f; // Duration for which the push force is applied
     public float pushCooldown = 3f; // Cooldown duration before another push can occur
-    float difficultyModifier;
 
     private float pushTimer = 0f; // Timer to track push duration and cooldown
     private bool isPushing = false; // Flag to indicate if pushing is active
@@ -17,14 +15,10 @@ public class EnemyFollow2D : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Movement>().transform;
-        difficultyModifier = 1 + data.CurrentLevel / 10;
     }
 
     void Update()
     {
-        pushForce = 1.5f * difficultyModifier;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.drag = 0.25f * difficultyModifier;
         if (player != null)
         {
             Vector2 direction = (Vector2)player.position - (Vector2)transform.position;
