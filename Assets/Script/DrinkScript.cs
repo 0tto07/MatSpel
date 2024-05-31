@@ -24,7 +24,7 @@ public class DrinkScript : MonoBehaviour
                     maxPrice = 1000;
                     break;
                 }
-            //soda
+            //health
             case 1:
                 {
                     minPrice = 300;
@@ -80,20 +80,34 @@ public class DrinkScript : MonoBehaviour
                     {
                         data.energy *= 1.5f;
                         data.energydrink = true;
+                        if (data.energydrink == false)
+                        {
+                            data.energy /= 1.5f;
+                        }
                         break;
                     }
                 //health
                 case 1:
                     {
-                        data.weight *= 1.5f;
+                        data.speed *= 1.5f;
                         data.health = true;
+                        if (data.health == false)
+                        {
+                            data.speed /= 1.5f;
+                        }
                         break;
                     }
                 //protein drink
                 case 2:
                     {
-                        data.strength *= 1.5f;
+                        data.strength *= 1.3f;
+                        data.weight *= 1.3f;
                         data.proteinshake = true;
+                        if (data.proteinshake == false)
+                        {
+                            data.strength /= 1.3f;
+                            data.weight /= 1.3f;
+                        }
                         break;
                     }
                 //sake
@@ -104,11 +118,12 @@ public class DrinkScript : MonoBehaviour
                         data.weight *= 1.25f;
                         data.energy *= 1.4f;
                         data.sake = true;
-                        if (data.milk == false)
+                        if (data.sake == false)
                         {
                             data.weight /= 1.3f;
                             data.strength /= 1.25f;
                             data.speed /= 1.15f;
+                            data.energy /= 1.4f;
                         }
                         break;
                     }
@@ -116,23 +131,23 @@ public class DrinkScript : MonoBehaviour
                 case 4:
                     {
                         data.weight *= 1.7f;
+                        data.speed /= 1.2f;
                         data.disel = true;
-                        if (data.milk == false)
+                        if (data.disel == false)
                         {
                             data.weight /= 1.7f;
+                            data.speed *= 1.2f;
                         }
                         break;
                     }
                 //milk
                 case 5:
                     {
-                        data.weight *= 1.3f;
-                        data.strength *= 1.25f;
+                        data.strength *= 1.5f;
                         data.milk = true;
                         if (data.milk == false)
                         {
-                            data.weight /= 1.3f;
-                            data.strength /= 1.25f;
+                            data.strength /= 1.5f;
                         }
                         break;
                     }
