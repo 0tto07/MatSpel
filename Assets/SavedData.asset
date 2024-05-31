@@ -16,7 +16,7 @@ MonoBehaviour:
   followers: 69
   energy: -16
   speed: 64
-  weight: 100
+  weight: 210
   strength: 750
   CurrentLevel: 1
   SFXvolume: 0

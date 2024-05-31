@@ -5,6 +5,7 @@ using UnityEngine;
 public class StatApplier : MonoBehaviour
 {
     public FatassData data;
+    public Rigidbody2D myRB = null;
     public float strengthMod;
     public float weightMod;
     public float energyMod;
@@ -24,6 +25,6 @@ public class StatApplier : MonoBehaviour
         weightMod = data.weight/100;
         energyMod = data.energy/100;
         speedMod = data.speed/100;
-        scaleMod = 1 + (data.weight/1000);
+        scaleMod = data.weight / 500;
     }
 }
