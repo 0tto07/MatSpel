@@ -22,8 +22,8 @@ public class FatassData : ScriptableObject
 
     //Basic save stuff
     public float CurrentLevel;
-    public int SFXvolume;
-    public int Musicvolume;
+    public float SFXvolume;
+    public float Musicvolume;
 
     //Drink buffs
     public bool health;
